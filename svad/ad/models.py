@@ -30,7 +30,7 @@ class Airport(models.Model):
 #
 
 class Aircraft_Type(models.Model):
-    aircraft_Type = models.CharField(max_length=30)
+    aircraft_Type = models.CharField(max_length=25)
     max_fuel_capacity = models.IntegerField()
     first_class_seats=models.IntegerField(max_length=3)
     business_class_seats=models.IntegerField(max_length=3)
