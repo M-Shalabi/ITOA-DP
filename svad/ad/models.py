@@ -9,9 +9,9 @@ class Country(models.Model):
 
 class City(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    
+
     name = models.CharField(max_length=20)
-    
+
 
 class Airport(models.Model):
     city = models.ForeignKey(City, on_delete=models.CASCADE)
@@ -23,8 +23,8 @@ class Airport(models.Model):
     remarks = models.CharField(max_length=500)
     fuel_cost = models.IntegerField()
     fuel_currency = models.IntegerField()
-    
-# Primary keys and Foreign keys and relationships 
+
+# Primary keys and Foreign keys and relationships
 # #one to many and one to one
 #
 #
@@ -32,9 +32,9 @@ class Airport(models.Model):
 class Aircraft_Type(models.Model):
     aircraft_Type = models.CharField(max_length=25)
     max_fuel_capacity = models.IntegerField()
-    first_class_seats=models.IntegerField(max_length=3)
-    business_class_seats=models.IntegerField(max_length=3)
-    economy_class_seats=models.IntegerField(max_length=3)
+    first_class_seats=models.IntegerField()
+    business_class_seats=models.IntegerField()
+    economy_class_seats=models.IntegerField()
 
 class Aircraft(models.Model):
     airport = models.ForeignKey(Airport, on_delete=models.CASCADE)
