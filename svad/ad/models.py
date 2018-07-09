@@ -51,8 +51,8 @@ class Airport(models.Model):
     is_military= models.BooleanField()
     is_international= models.BooleanField()
     remarks = models.CharField(max_length=500)
-    fuel_cost = models.IntegerField()
-    fuel_currency = models.IntegerField()
+    fuel_cost = models.FloatField()
+    fuel_currency = models.CharField(max_length=500)
 
 
     @staticmethod
