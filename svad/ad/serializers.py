@@ -35,4 +35,4 @@ class AuthorizedTypesSerializers(serializers.ModelSerializer):
     class Meta:
         model = AuthorizedTypes
         fields = '__all__'
-        read_only_fields=('id',)
+        read_only_fields = ('id',)
