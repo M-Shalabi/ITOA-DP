@@ -7,6 +7,10 @@ from django.db import models
 class Country(models.Model):
     name = models.CharField(max_length=30)
 
+# create and update functions are optional , 
+# we don't need them as there are already built in create and update !
+# we define functions or override them when we need a special case
+
     @staticmethod
     def create(**kwargs):
         country = Country()
@@ -18,7 +22,7 @@ class Country(models.Model):
         self.name = kwargs.get('name')
         self.save()
         return self
-
+    
 
 
 class City(models.Model):
