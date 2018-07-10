@@ -10,7 +10,7 @@ class Country(models.Model):
 # create and update functions are optional , 
 # we don't need them as there are already built in create and update !
 # we define functions or override them when we need a special case
-
+'''
     @staticmethod
     def create(**kwargs):
         country = Country()
@@ -22,13 +22,13 @@ class Country(models.Model):
         self.name = kwargs.get('name')
         self.save()
         return self
-    
-
+'''
 
 class City(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
 
+'''
     @staticmethod
     def create(**kwargs):
         city = City()
@@ -42,11 +42,11 @@ class City(models.Model):
         self.country = kwargs.get('country')
         self.save()
         return self
-
+'''
 
 class Airport(models.Model):
     city = models.ForeignKey(City, on_delete=models.CASCADE)
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=60)
     is_civilian = models.BooleanField()
     is_military= models.BooleanField()
     is_international= models.BooleanField()
@@ -54,7 +54,7 @@ class Airport(models.Model):
     fuel_cost = models.FloatField()
     fuel_currency = models.CharField(max_length=500)
 
-
+'''
     @staticmethod
     def create(**kwargs):
         airport = Airport()
@@ -80,10 +80,11 @@ class Airport(models.Model):
         self.fuel_currency = kwargs.get('fuel_currency')
         self.save()
         return self
-# Primary keys and Foreign keys and relationships
-# #one to many and one to one
-#
-#
+    # Primary keys and Foreign keys and relationships
+    # #one to many and one to one
+    #
+    #
+'''
 
 class Aircraft_Type(models.Model):
     aircraft_Type = models.CharField(max_length=25)
@@ -91,7 +92,7 @@ class Aircraft_Type(models.Model):
     first_class_seats=models.IntegerField()
     business_class_seats=models.IntegerField()
     economy_class_seats=models.IntegerField()
-
+'''
     @staticmethod
     def create(**kwargs):
         aircraft_type = Aircraft_Type()
@@ -111,7 +112,7 @@ class Aircraft_Type(models.Model):
         self.economy_class_seats = kwargs.get('economy_class_seats')
         self.save()
         return self
-
+'''
 
 class Aircraft(models.Model):
     airport = models.ForeignKey(Airport, on_delete=models.CASCADE)
@@ -122,7 +123,7 @@ class Aircraft(models.Model):
     status = models.CharField(max_length=30)
     fuel_level = models.FloatField()
     
-
+'''
     @staticmethod
     def create(**kwargs):
         aircraft = Aircraft()
@@ -146,12 +147,12 @@ class Aircraft(models.Model):
         self.fuel_level = kwargs.get('fuel_level')
         self.save()
         return self
-
+'''
 
 class AuthorizedTypes(models.Model):
     airport = models.ForeignKey(Airport, on_delete=models.CASCADE)
     aircraft_type = models.ForeignKey(Aircraft_Type,on_delete=models.CASCADE)
-
+'''
     @staticmethod
     def create(**kwargs):
         auth_types = AuthorizedTypes()
@@ -165,3 +166,5 @@ class AuthorizedTypes(models.Model):
         self.aircraft_type = kwargs.get('aircraft_type')
         self.save()
         return self
+'''
+        
