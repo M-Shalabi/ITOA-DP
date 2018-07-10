@@ -6,6 +6,7 @@ class CountrySerializers(serializers.ModelSerializer):
         model = Country
         fields = '__all__'
         read_only_fields=('id',)
+        # do i have to remove the , ? or not
 
 class CitySerializers(serializers.ModelSerializer):
     class Meta:
