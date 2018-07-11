@@ -7,9 +7,17 @@ from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 # Create your views here.
 
+# Views.py is the Controller in the MVC
 
 class CountryList(APIView):
  #Check Django documentations
+# post for create
+# patch for update
+# get for read
+# delete for delete
+
+#put for complete update
+
  # HTTP METHODS  get , post
  # get list of countries
     def get(self,request):

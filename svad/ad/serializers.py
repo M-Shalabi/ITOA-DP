@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from .models import Country,Aircraft,Aircraft_Type,Airport,City,AuthorizedTypes
-
+#This is Serlizer Model way, we took the fields from the model, 
+# otherwise we would've wrote all the fields again
+# it is The view in the MVC 
 class CountrySerializers(serializers.ModelSerializer):
     class Meta:
         model = Country

@@ -1,15 +1,15 @@
 from django.db import models
 
 # Create your models here.
-
-    #data def
-    #data manuplation
+# It is the Models in MVC
+# Models.py is for data defention & data manuplation
 class Country(models.Model):
     name = models.CharField(max_length=30)
 
 # create and update functions are optional , 
 # we don't need them as there are already built in create and update !
 # we define functions or override them when we need a special case
+
 '''
     @staticmethod
     def create(**kwargs):
@@ -92,6 +92,10 @@ class Aircraft_Type(models.Model):
     first_class_seats=models.IntegerField()
     business_class_seats=models.IntegerField()
     economy_class_seats=models.IntegerField()
+    # (Airport , through = 'AuthorizedTypes' , related_name='authorized_aircraft_types')
+    # since we've not used class AuthorizedTypes we wont write through = 'AuthorizedTypes' 
+
+    authorized_airports = models.ManyToManyField(Airport , related_name='authorized_aircraft_types')
 '''
     @staticmethod
     def create(**kwargs):
@@ -148,10 +152,16 @@ class Aircraft(models.Model):
         self.save()
         return self
 '''
+# We don't need this class, Django will create it since we made the Many to Many relation in Aircraft types
+# and since we don't have any fields it's just the relations, from the airport and aircraft_type
 
-class AuthorizedTypes(models.Model):
-    airport = models.ForeignKey(Airport, on_delete=models.CASCADE)
-    aircraft_type = models.ForeignKey(Aircraft_Type,on_delete=models.CASCADE)
+#class AuthorizedTypes
+'''
+    class AuthorizedTypes(models.Model):
+        airport = models.ForeignKey(Airport, on_delete=models.CASCADE)
+        aircraft_type = models.ForeignKey(Aircraft_Type,on_delete=models.CASCADE)
+'''
+
 '''
     @staticmethod
     def create(**kwargs):
