@@ -1,32 +1,35 @@
-from .models import Country, City, Airport, Aircraft_Type, Aircraft, AuthorizedTypes
-from .serializers import CountrySerializers, CitySerializers, AirportSerializers, Aircraft_TypeSerializers, AircraftSerializers, AuthorizedTypesSerializers
+from .models import Country, City, Airport, Aircraft_Type, Aircraft
+from .serializers import CountrySerializers, CitySerializers, AirportSerializers, Aircraft_TypeSerializers, AircraftSerializers
+# We removed AuthorizedTypesSerializers from .serializers import 
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 # Create your views here.
+# We removed AuthorizedTypes class, so we removed it from .models import
 
 # Views.py is the Controller in the MVC
 
 class CountryList(APIView):
- #Check Django documentations
-# post for create
-# patch for update
-# get for read
-# delete for delete
+    #Check Django documentations
+    # post for create
+    # patch for update
+    # get for read
+    # delete for delete
 
-#put for complete update
+    #put for complete update
 
- # HTTP METHODS  get , post
- # get list of countries
+ 
+    # HTTP METHODS  get , post
+    # get list of countries
     def get(self,request):
         countries = Country.objects.all()
         serializer= CountrySerializers(countries, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
- # create a new country
+    # create a new country
     def post(self,request):
         serializer = CountrySerializers(data=request.data)
         if serializer.is_valid():
@@ -203,8 +206,8 @@ class AircraftDetail(APIView):
         aircrafts = get_object_or_404(Aircraft, pk=pk)
         aircrafts.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)        
-
-class AuthorizedTypesList(APIView):
+'''
+    class AuthorizedTypesList(APIView):
 
     # get list of cities
     def get(self,request):
@@ -221,7 +224,7 @@ class AuthorizedTypesList(APIView):
             return Response(serializer.data, status = status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
 
-class AuthorizedTypesDetail(APIView):
+    class AuthorizedTypesDetail(APIView):
     def get(self, request, pk):
         authorized_types = get_object_or_404(AuthorizedTypes, pk=pk)
         serializer = AuthorizedTypesSerializers(authorized_types)
@@ -240,3 +243,4 @@ class AuthorizedTypesDetail(APIView):
         authorized_types = get_object_or_404(AuthorizedTypes, pk=pk)
         authorized_types.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)        
+'''

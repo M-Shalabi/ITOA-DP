@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Country,Aircraft,Aircraft_Type,Airport,City,AuthorizedTypes
+from .models import Country,Aircraft,Aircraft_Type,Airport,City
+# We removed AuthorizedTypes class, so we removed it from .modelsimport
 #This is Serlizer Model way, we took the fields from the model, 
 # otherwise we would've wrote all the fields again
 # it is The view in the MVC 
@@ -33,9 +34,12 @@ class AirportSerializers(serializers.ModelSerializer):
         model = Airport
         fields = '__all__'
         read_only_fields=('id',)
-
-class AuthorizedTypesSerializers(serializers.ModelSerializer):
+# We removed this since we don't have class AuthriedTypes
+#  we don't need it anymore because there are no fields
+'''
+    class AuthorizedTypesSerializers(serializers.ModelSerializer):
     class Meta:
         model = AuthorizedTypes
         fields = '__all__'
         read_only_fields = ('id',)
+'''

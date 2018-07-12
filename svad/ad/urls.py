@@ -23,6 +23,9 @@ urlpatterns = [
     url(r'countries/cities/airports/aircraft_types/aircrafts/(?P<pk>[0-9]+)$',views.AircraftDetail.as_view(), name = 'aircrafts_details'),
 
 
-    url(r'countries/cities/airports/aircraft_types/aircrafts/authorized_types$',views.AuthorizedTypesList.as_view(), name ='authorized_types_list'),
-    url(r'countries/cities/airports/aircraft_types/aircrafts/authorized_types/(?P<pk>[0-9]+)$',views.AuthorizedTypesDetail.as_view(), name = 'authorized_types_details'),
+    #We don't need this anymore since we now have authorized_airports
+    #many to many relationship in Aircraft_Type class
+    #url(r'countries/cities/airports/aircraft_types/aircrafts/authorized_types$',views.AuthorizedTypesList.as_view(), name ='authorized_types_list'),
+    #url(r'countries/cities/airports/aircraft_types/aircrafts/authorized_types/(?P<pk>[0-9]+)$',views.AuthorizedTypesDetail.as_view(), name = 'authorized_types_details'),
+
 ]

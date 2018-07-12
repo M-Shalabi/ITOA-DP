@@ -87,15 +87,17 @@ class Airport(models.Model):
 '''
 
 class Aircraft_Type(models.Model):
+    authorized_airports = models.ManyToManyField(Airport , related_name='authorized_aircraft_types')
     aircraft_Type = models.CharField(max_length=25)
     max_fuel_capacity = models.IntegerField()
     first_class_seats=models.IntegerField()
     business_class_seats=models.IntegerField()
     economy_class_seats=models.IntegerField()
+    
     # (Airport , through = 'AuthorizedTypes' , related_name='authorized_aircraft_types')
     # since we've not used class AuthorizedTypes we wont write through = 'AuthorizedTypes' 
 
-    authorized_airports = models.ManyToManyField(Airport , related_name='authorized_aircraft_types')
+   
 '''
     @staticmethod
     def create(**kwargs):
