@@ -61,7 +61,10 @@ class CityList(APIView):
 
     # get list of cities
     def get(self,request):
+        country_pk = request.query_params.get('country', None)
         cities = City.objects.all()
+        if country_pk:
+            cities = cities.filter(country__id=country_pk)
         serializer= CitySerializers(cities, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -75,11 +78,12 @@ class CityList(APIView):
         return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
 
 class CityDetail(APIView):
+
     def get(self, request, pk):
         cities = get_object_or_404(City, pk=pk)
         serializer = CitySerializers(cities)
         return Response(serializer.data , status=status.HTTP_200_OK)
-
+    
     def patch(self, request, pk):
         cities = get_object_or_404(City, pk=pk)
         serializer = CitySerializers(cities,data=request.data, partial=True)
@@ -98,7 +102,10 @@ class AirportList(APIView):
 
     # get list of Airport
     def get(self,request):
+        city_pk = request.query_params.get('city', None)
         airports = Airport.objects.all()
+        if city_pk:
+            airports = airports.filter(city__id=city_pk)
         serializer= AirportSerializers(airports, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -174,7 +181,10 @@ class AircraftList(APIView):
 
     # get list of cities
     def get(self,request):
+        airport_pk = request.query_params.get('airport', None)
         aircrafts = Aircraft.objects.all()
+        if airport_pk:
+            aircrafts = aircrafts.filter(airport=airport_pk)
         serializer= AircraftSerializers(aircrafts, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
