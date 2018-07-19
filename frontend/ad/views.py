@@ -13,13 +13,33 @@ class CountryList(View):
         #if status_code == 200 remove if not used idk why he talked about it
         return render(request,'ad/country_index.html',context)
 
-    
+    #COMPLETE FROM HERE
     def post():
         pass
-
-
 
 class CountryDetail(View):
     pass
 
-# Create your views here.
+class CityList(View):
+    pass
+
+class CityDetail(View):
+    pass     
+
+class AirportList(View):
+    pass
+
+class AirportDetail(View):
+    pass      
+
+class Aircraft_TypeList(View):
+    pass
+
+class Aircraft_TypeDetail(View):
+    pass
+
+class AircraftList(View):
+    pass
+    
+class AircraftDetail(View):
+    pass
