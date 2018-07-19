@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'rest_framework_docs',
+    #'rest_framework_docs',
     'ad.apps.AdConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -124,3 +124,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+BACKEND_URL = 'https://127.0.0.1:8000/'

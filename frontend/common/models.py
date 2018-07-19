@@ -1,6 +1,7 @@
 import requests
 from django.conf import settings
 from rest_framework import status as http_statuses
+from importlib import import_module
 
 BASE_URL = settings.BACKEND_URL
 
@@ -102,7 +103,7 @@ class FrontendModel(object):
 
         return model_dict
 
-    def save(self, token, parent_pk=None):
+    def save(self, parent_pk=None):
         if parent_pk:
             url = self.index_url.format(parent_pk)
         else:
@@ -112,8 +113,7 @@ class FrontendModel(object):
         for k, v in vars(self).items():
             params[k] = v
 
-        request = FoisRequest(url, token)
-        print('params {0}'.format(params))
+        request = FrontendRequest(url)
         request_status, data = request.post(params=params)
         if request_status == http_statuses.HTTP_201_CREATED:
             serializer_status, object_instance = self.deserialize(data)
@@ -121,12 +121,12 @@ class FrontendModel(object):
         else:
             return request_status, False, data
 
-    def update(self, token):
+    def update(self):
         params = {}
         for k, v in vars(self).items():
             params[k] = v
 
-        request = FoisRequest(self.detail_url.format(self.id), token)
+        request = FrontendRequest(self.detail_url.format(self.id))
         request_status, data = request.patch(params=params)
         if request_status == http_statuses.HTTP_200_OK:
             serializer_status, object_instance = self.deserialize(data)
@@ -134,14 +134,14 @@ class FrontendModel(object):
         else:
             return request_status, False, data
 
-    def delete(self, token):
+    def delete(self):
         url = self.detail_url.format(self.id)
-        request = FoisRequest(url, token)
+        request = FrontendRequest(url)
         request_status, data = request.delete()
         return request_status, False, data
 
     @classmethod
-    def get_list(cls, token, parent_pk=None, cursor=None, query_params=None):
+    def get_list(cls,parent_pk=None, cursor=None, query_params=None):
         if parent_pk:
             url = cls.index_url.format(parent_pk)
         else:
@@ -153,7 +153,7 @@ class FrontendModel(object):
         if cursor:
             params['cursor'] = cursor
 
-        request = FoisRequest(url, token)
+        request = BackendRequest(url)
         if params:
             request_status, data = request.get(params=params)
         else:
@@ -166,9 +166,9 @@ class FrontendModel(object):
             return request_status, False, data
 
     @classmethod
-    def get(cls, object_id, token):
+    def get(cls, object_id):
         url = cls.detail_url.format(object_id)
-        request = FoisRequest(url, token)
+        request = FrontendRequest(url)
         request_status, data = request.get()
         if request_status == http_statuses.HTTP_200_OK:
             serializer_status, object_instance = cls.deserialize(data, view=True)

@@ -144,13 +144,13 @@ class Aircraft_TypeList(APIView):
     # get list of Airport
     def get(self,request):
         aircraft_types = Aircraft_Type.objects.all()
-        serializer= Aircraft_TypeSerializers(aircraft_types, many=True)
+        serializer= Aircraft_TypeViewSerializers(aircraft_types, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
     # create a new Airport
     def post(self,request):
-        serializer = Aircraft_TypeSerializers(data=request.data)
+        serializer = Aircraft_TypeViewSerializers(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)

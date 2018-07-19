@@ -4,35 +4,37 @@ class CountrySerializer(serializers.Serializer):
     name = serializers.CharField(max_length=20)
 
 
-class City(serializers.Serializer):
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    name = models.CharField(max_length=20)
+class CitySerializer(serializers.Serializer):
+    country = CountrySerializer()
+    name = serializers.CharField(max_length=20)
+    country = serializers.IntegerField()
+
+class AirportSerializer(serializers.Serializer):
+    city = CitySerializer()
+    name = serializers.CharField(max_length=60)
+    is_civilian = serializers.BooleanField()
+    is_military= serializers.BooleanField()
+    is_international= serializers.BooleanField()
+    remarks = serializers.CharField(max_length=500)
+    fuel_cost = serializers.FloatField()
+    fuel_currency = serializers.CharField(max_length=500)
+
+class Aircraft_TypeSerializer(serializers.Serializer):
+    authorized_airports = AirportSerializer(many=True)
+    aircraft_Type = serializers.CharField(max_length=25)
+    max_fuel_capacity = serializers.IntegerField()
+    first_class_seats=serializers.IntegerField()
+    business_class_seats=serializers.IntegerField()
+    economy_class_seats=serializers.IntegerField()
 
 
-class Airport(serializers.Serializer):
-    city = models.ForeignKey(City, on_delete=models.CASCADE)
-    name = models.CharField(max_length=60)
-    is_civilian = models.BooleanField()
-    is_military= models.BooleanField()
-    is_international= models.BooleanField()
-    remarks = models.CharField(max_length=500)
-    fuel_cost = models.FloatField()
-    fuel_currency = models.CharField(max_length=500)
+class AircraftSerializer(serializers.Serializer):
+    airports = AirportSerializers()
+    aircraft_type = Aircraft_TypeSerializer()
+    name = serializers.CharField(max_length=30)
+    location = serializers.CharField(max_length=40)
+    production_year = serializers.DateField()
+    status = serializers.CharField(max_length=30)
+    fuel_level = serializers.FloatField()    
 
-class Aircraft_Type(serializers.Serializer):
-    authorized_airports = models.ManyToManyField(Airport , related_name='authorized_aircraft_types')
-    aircraft_Type = models.CharField(max_length=25)
-    max_fuel_capacity = models.IntegerField()
-    first_class_seats=models.IntegerField()
-    business_class_seats=models.IntegerField()
-    economy_class_seats=models.IntegerField()
-
-
-class Aircraft(serializers.Serializer):
-    airport = models.ForeignKey(Airport, on_delete=models.CASCADE)
-    aircraft_type = models.ForeignKey(Aircraft_Type,on_delete=models.CASCADE)
-    name = models.CharField(max_length=30)
-    location = models.CharField(max_length=40)
-    production_year = models.DateField()
-    status = models.CharField(max_length=30)
-    fuel_level = models.FloatField()    
+    # Remove the foriegn
