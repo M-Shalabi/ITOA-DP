@@ -53,6 +53,7 @@ class Aircraft_TypeDetail(View):
     pass
 
 class AircraftList(View):
+    
     def get(self,request):
         status_code, is_serialized, aircrafts = Aircraft.get_list()
         context = {

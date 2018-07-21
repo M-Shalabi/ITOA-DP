@@ -38,7 +38,7 @@ class AirportSerializer(serializers.ModelSerializer):
 # We named this Aircraft_TypeViewSerializers , we will return here everything including the relationship 
 # because it's nested jason data we need to return it
 class Aircraft_TypeViewSerializer(serializers.ModelSerializer):
-    airports = AirportSerializer(many=True)
+    authorized_airports = AirportSerializer(many=True)
     class Meta:
         model = Aircraft_Type
         fields = '__all__'

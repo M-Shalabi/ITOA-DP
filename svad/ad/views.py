@@ -1,5 +1,5 @@
 from .models import Country, City, Airport, Aircraft_Type, Aircraft
-from .serializers import CountrySerializer, CitySerializer, AirportSerializer, Aircraft_TypeSerializer, AircraftSerializer
+from .serializers import CountrySerializer, CitySerializer, AirportSerializer, Aircraft_TypeSerializer,Aircraft_TypeViewSerializer, AircraftSerializer
 # We removed AuthorizedTypesSerializers from .serializers import 
 from rest_framework import status
 from rest_framework.response import Response
