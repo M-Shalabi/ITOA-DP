@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <table style="width:90%">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th> 
+                    <th>Civilian</th>
+                    <th>Military</th>
+                    <th>International</th> 
+                    <th>Fuel Cost</th>
+                    <th>Fuel Currency</th>
+                    <th>City</th> 
+                    <th>Country</th> 
+                    <th>Remarks</th>
+                </tr>
+
+                {% for airport in airports %}
+                <tr>
+                    <td>{{ airport.id }}</td>
+                    <td>{{ airport.name }}</td>
+                    <td>{{ airport.is_civilian }}</td>
+                    <td>{{ airport.is_military }}</td>
+                    <td>{{ airport.is_international }}</td>
+                    <td>{{ airport.fuel_cost }}</td>
+                    <td>{{ airport.fuel_currency }}</td>
+                    <!-- airport.city is a dict-->
+                    <td>{{ airport.city.name }}</td>
+                    <td>{{ airport.city.country }}</td>
+                    <td>{{ airport.remarks }}</td>
+                </tr>
+                {% endfor %}
+                
+              </table>
+</body>
+</html>

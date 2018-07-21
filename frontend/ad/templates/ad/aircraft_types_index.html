@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <table style="width:90%">
+                <tr>
+                    <th>ID</th>
+                    <th>Aircraft Type</th> 
+                    <th>Max Fuel Capacity</th>
+                    <th>First Class Seats</th>
+                    <th>Business Class Seats</th>
+                    <th>Economy Class Seats</th> 
+                    <th>Authorized Airports</th>
+                </tr>
+                {% for type in aircraft_types %}
+                <tr>
+                    <td>{{ type.id }}</td>
+                    <td>{{ type.aircraft_Type }}</td>
+                    <td>{{ type.max_fuel_capacity }}</td>
+                    <td>{{ type.first_class_seats }}</td>
+                    <td>{{ type.business_class_seats }}</td>
+                    <td>{{ type.economy_class_seats }}</td>
+                    <td>{{ type.authorized_airports }}</td>
+                </tr>
+                {% endfor %}
+                
+              </table>
+</body>
+</html>

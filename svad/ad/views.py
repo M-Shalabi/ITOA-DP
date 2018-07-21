@@ -1,5 +1,5 @@
 from .models import Country, City, Airport, Aircraft_Type, Aircraft
-from .serializers import CountrySerializers, CitySerializers, AirportSerializers, Aircraft_TypeSerializers, AircraftSerializers
+from .serializers import CountrySerializer, CitySerializer, AirportSerializer, Aircraft_TypeSerializer, AircraftSerializer
 # We removed AuthorizedTypesSerializers from .serializers import 
 from rest_framework import status
 from rest_framework.response import Response
@@ -25,13 +25,13 @@ class CountryList(APIView):
     # get list of countries
     def get(self,request):
         countries = Country.objects.all()
-        serializer= CountrySerializers(countries, many=True)
+        serializer= CountrySerializer(countries, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
     # create a new country
     def post(self,request):
-        serializer = CountrySerializers(data=request.data)
+        serializer = CountrySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
@@ -40,12 +40,12 @@ class CountryList(APIView):
 class CountryDetail(APIView):
     def get(self, request, pk):
         country = get_object_or_404(Country, pk=pk)
-        serializer = CountrySerializers(country)
+        serializer = CountrySerializer(country)
         return Response(serializer.data , status=status.HTTP_200_OK)
 
     def patch(self, request, pk):
         country = get_object_or_404(Country, pk=pk)
-        serializer = CountrySerializers(country,data=request.data, partial=True)
+        serializer = CountrySerializer(country,data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.errors , status = status.HTTP_200_OK)
@@ -65,13 +65,13 @@ class CityList(APIView):
         cities = City.objects.all()
         if country_pk:
             cities = cities.filter(country__id=country_pk)
-        serializer= CitySerializers(cities, many=True)
+        serializer= CitySerializer(cities, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
     # create a new city
     def post(self,request):
-        serializer = CitySerializers(data=request.data)
+        serializer = CitySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
@@ -81,12 +81,12 @@ class CityDetail(APIView):
 
     def get(self, request, pk):
         cities = get_object_or_404(City, pk=pk)
-        serializer = CitySerializers(cities)
+        serializer = CitySerializer(cities)
         return Response(serializer.data , status=status.HTTP_200_OK)
     
     def patch(self, request, pk):
         cities = get_object_or_404(City, pk=pk)
-        serializer = CitySerializers(cities,data=request.data, partial=True)
+        serializer = CitySerializer(cities,data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.errors , status = status.HTTP_200_OK)
@@ -106,13 +106,13 @@ class AirportList(APIView):
         airports = Airport.objects.all()
         if city_pk:
             airports = airports.filter(city__id=city_pk)
-        serializer= AirportSerializers(airports, many=True)
+        serializer= AirportSerializer(airports, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
     # create a new Airport
     def post(self,request):
-        serializer = AirportSerializers(data=request.data)
+        serializer = AirportSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
@@ -122,12 +122,12 @@ class AirportDetail(APIView):
 
     def get(self, request, pk):
         airports = get_object_or_404(Airport, pk=pk)
-        serializer = AirportSerializers(airports)
+        serializer = AirportSerializer(airports)
         return Response(serializer.data , status=status.HTTP_200_OK)
 
     def patch(self, request, pk):
         airports = get_object_or_404(Airport, pk=pk)
-        serializer = AirportSerializers(airports,data=request.data, partial=True)
+        serializer = AirportSerializer(airports,data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.errors , status = status.HTTP_200_OK)
@@ -144,13 +144,13 @@ class Aircraft_TypeList(APIView):
     # get list of Airport
     def get(self,request):
         aircraft_types = Aircraft_Type.objects.all()
-        serializer= Aircraft_TypeViewSerializers(aircraft_types, many=True)
+        serializer= Aircraft_TypeViewSerializer(aircraft_types, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
     # create a new Airport
     def post(self,request):
-        serializer = Aircraft_TypeViewSerializers(data=request.data)
+        serializer = Aircraft_TypeViewSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
@@ -160,12 +160,12 @@ class Aircraft_TypeDetail(APIView):
 
     def get(self, request, pk):
         aircraft_types = get_object_or_404(Aircraft_Type, pk=pk)
-        serializer = Aircraft_TypeSerializers(aircraft_types)
+        serializer = Aircraft_TypeSerializer(aircraft_types)
         return Response(serializer.data , status=status.HTTP_200_OK)
 
     def patch(self, request, pk):
         aircraft_types = get_object_or_404(Aircraft_Type, pk=pk)
-        serializer = Aircraft_TypeSerializers(aircraft_types,data=request.data, partial=True)
+        serializer = Aircraft_TypeSerializer(aircraft_types,data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.errors , status = status.HTTP_200_OK)
@@ -185,13 +185,13 @@ class AircraftList(APIView):
         aircrafts = Aircraft.objects.all()
         if airport_pk:
             aircrafts = aircrafts.filter(airport=airport_pk)
-        serializer= AircraftSerializers(aircrafts, many=True)
+        serializer= AircraftSerializer(aircrafts, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
     # create a new city
     def post(self,request):
-        serializer = AircraftSerializers(data=request.data)
+        serializer = AircraftSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
@@ -200,12 +200,12 @@ class AircraftList(APIView):
 class AircraftDetail(APIView):
     def get(self, request, pk):
         aircrafts = get_object_or_404(Aircraft, pk=pk)
-        serializer = AircraftSerializers(aircrafts)
+        serializer = AircraftSerializer(aircrafts)
         return Response(serializer.data , status=status.HTTP_200_OK)
 
     def patch(self, request, pk):
         aircrafts = get_object_or_404(Aircraft, pk=pk)
-        serializer = AircraftSerializers(aircrafts,data=request.data, partial=True)
+        serializer = AircraftSerializer(aircrafts,data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.errors , status = status.HTTP_200_OK)
@@ -222,13 +222,13 @@ class AircraftDetail(APIView):
     # get list of cities
     def get(self,request):
         authorized_types = AuthorizedTypes.objects.all()
-        serializer= AuthorizedTypesSerializers(authorized_types, many=True)
+        serializer= AuthorizedTypesSerializer(authorized_types, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
     # create a new city
     def post(self,request):
-        serializer = AuthorizedTypesSerializers(data=request.data)
+        serializer = AuthorizedTypesSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status = status.HTTP_200_OK)
@@ -237,12 +237,12 @@ class AircraftDetail(APIView):
     class AuthorizedTypesDetail(APIView):
     def get(self, request, pk):
         authorized_types = get_object_or_404(AuthorizedTypes, pk=pk)
-        serializer = AuthorizedTypesSerializers(authorized_types)
+        serializer = AuthorizedTypesSerializer(authorized_types)
         return Response(serializer.data , status=status.HTTP_200_OK)
 
     def patch(self, request, pk):
         authorized_types = get_object_or_404(AuthorizedTypes, pk=pk)
-        serializer = AuthorizedTypesSerializers(authorized_types,data=request.data, partial=True)
+        serializer = AuthorizedTypesSerializer(authorized_types,data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.errors , status = status.HTTP_200_OK)

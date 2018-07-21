@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from .models import Country
+from .models import Country,Aircraft,Aircraft_Type,Airport,City
 
 class CountryList(View):
     pass
@@ -10,10 +10,8 @@ class CountryList(View):
         context = {
             'countries':countries
         }
-        #if status_code == 200 remove if not used idk why he talked about it
         return render(request,'ad/country_index.html',context)
 
-    #COMPLETE FROM HERE
     def post():
         pass
 
@@ -21,25 +19,46 @@ class CountryDetail(View):
     pass
 
 class CityList(View):
-    pass
+    def get(self,request):
+        status_code, is_serialized, cities = City.get_list()
+        context = {
+            'cities':cities
+        }
+        return render(request,'ad/city_index.html',context)
 
 class CityDetail(View):
     pass     
 
 class AirportList(View):
-    pass
+
+    def get(self,request):
+        status_code, is_serialized, airports = Airport.get_list()
+        context = {
+            'airports':airports
+        }
+        return render(request,'ad/airport_index.html',context)
 
 class AirportDetail(View):
     pass      
 
 class Aircraft_TypeList(View):
-    pass
+    def get(self,request):
+        status_code, is_serialized, aircraft_types = Aircraft_Type.get_list()
+        context = {
+            'aircraft_types':aircraft_types
+        }
+        return render(request,'ad/aircraft_types_index.html',context)
 
 class Aircraft_TypeDetail(View):
     pass
 
 class AircraftList(View):
-    pass
+    def get(self,request):
+        status_code, is_serialized, aircrafts = Aircraft.get_list()
+        context = {
+            'aircrafts':aircrafts
+        }
+        return render(request,'ad/aircraft_index.html',context)
     
 class AircraftDetail(View):
     pass

@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <table style="width:90%">
+                <tr>
+                    <th>ID</th>
+
+                    <th>Aircraft Type</th> 
+                    <th>Name</th> 
+                    <th>Location</th>
+                    <th>Production Year</th>
+                    <th>Status</th> 
+                    <th>Fuel Level</th>
+                    <th>Airport</th>
+                </tr>
+
+                {% for aircraft in aircrafts %}
+
+                <tr>
+                    
+                    <td>{{ aircraft.id }}</td>
+                    <td>{{ aircraft.aircraft_type.name }}</td>
+                    <td>{{ aircraft.name }}</td>
+                    <td>{{ aircraft.location }}</td>
+                    <td>{{ aircraft.production_year }}</td>
+                    <td>{{ aircraft.status }}</td>
+                    <td>{{ aircraft.fuel_level }}</td>
+                    <td>{{ aircraft.airport.name }}</td>
+                </tr>
+                {% endfor %}
+                
+              </table>
+</body>
+</html>

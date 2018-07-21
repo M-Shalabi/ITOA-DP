@@ -27,8 +27,8 @@ class Country(FrontendModel):
 class City(FrontendModel):
 
     serializer_module = 'ad.serializers'
-    serializer_class = 'CitySerializers'
-    view_serializer_class = 'CitySerializers'
+    serializer_class = 'CitySerializer'
+    view_serializer_class = 'CitySerializer'
     index_url = 'ad/cities'
     detail_url = 'ad/cities/{0}'
     paginated = False
@@ -43,8 +43,8 @@ class City(FrontendModel):
 class Airport(FrontendModel):
 
     serializer_module = 'ad.serializers'
-    serializer_class = 'AirportSerializers'
-    view_serializer_class = 'AirportSerializers'
+    serializer_class = 'AirportSerializer'
+    view_serializer_class = 'AirportSerializer'
     index_url = 'ad/airports'
     detail_url = 'ad/airports/{0}'
     paginated = False
@@ -59,8 +59,8 @@ class Airport(FrontendModel):
 class Aircraft(FrontendModel):
 
     serializer_module = 'ad.serializers'
-    serializer_class = 'AircraftSerializers'
-    view_serializer_class = 'AircraftSerializers'
+    serializer_class = 'AircraftSerializer'
+    view_serializer_class = 'AircraftSerializer'
     index_url = 'ad/aircrafts'
     detail_url = 'ad/aircrafts/{0}'
     paginated = False
@@ -75,8 +75,8 @@ class Aircraft(FrontendModel):
 class Aircraft_Type(FrontendModel):
 
     serializer_module = 'ad.serializers'
-    serializer_class = 'Aircraft_TypeSerializers'
-    view_serializer_class = 'Aircraft_TypeSerializers'
+    serializer_class = 'Aircraft_TypeSerializer'
+    view_serializer_class = 'Aircraft_TypeSerializer'
     index_url = 'ad/aircraft_types'
     detail_url = 'ad/aircraft_types/{0}'
     paginated = False

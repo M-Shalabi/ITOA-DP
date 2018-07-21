@@ -9,7 +9,7 @@ class CitySerializer(serializers.Serializer):
     name = serializers.CharField(max_length=20)
     country = serializers.IntegerField()
 
-""" class AirportSerializer(serializers.Serializer):
+class AirportSerializer(serializers.Serializer):
     city = CitySerializer()
     name = serializers.CharField(max_length=60)
     is_civilian = serializers.BooleanField()
@@ -27,14 +27,11 @@ class Aircraft_TypeSerializer(serializers.Serializer):
     business_class_seats=serializers.IntegerField()
     economy_class_seats=serializers.IntegerField()
 
-
 class AircraftSerializer(serializers.Serializer):
-    airports = AirportSerializers()
+    airport = AirportSerializer()
     aircraft_type = Aircraft_TypeSerializer()
     name = serializers.CharField(max_length=30)
     location = serializers.CharField(max_length=40)
     production_year = serializers.DateField()
     status = serializers.CharField(max_length=30)
-    fuel_level = serializers.FloatField()    
- """
-    # Remove the foriegn
+    fuel_level = serializers.FloatField()
