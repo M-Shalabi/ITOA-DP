@@ -24,7 +24,11 @@
                     <td>{{ type.first_class_seats }}</td>
                     <td>{{ type.business_class_seats }}</td>
                     <td>{{ type.economy_class_seats }}</td>
-                    <td>{{ type.authorized_airports }}</td>
+                    <td>
+                    {% for a in type.authorized_airports %}
+                    {{ a.name }}
+                    {% endfor %}
+                </td>
                 </tr>
                 {% endfor %}
                 

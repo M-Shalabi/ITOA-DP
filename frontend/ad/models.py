@@ -38,6 +38,10 @@ class City(FrontendModel):
             super().__init__(new_dict)
         else:
             super().__init__(**kwargs)
+ #           if isinstance(kwargs['country', int]):
+      #          self.country = kwargs['country']
+     #       else:
+     #           self.country = Country(**kwargs['country'])
             
 
 class Airport(FrontendModel):

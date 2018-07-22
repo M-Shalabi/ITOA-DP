@@ -1,15 +1,18 @@
 from rest_framework import serializers
 
 class CountrySerializer(serializers.Serializer):
+    id = serializers.IntegerField()
     name = serializers.CharField(max_length=20)
 
 
 class CitySerializer(serializers.Serializer):
+    id = serializers.IntegerField()
     country = CountrySerializer()
     name = serializers.CharField(max_length=20)
-    country = serializers.IntegerField()
+    #country = serializers.IntegerField()
 
 class AirportSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
     city = CitySerializer()
     name = serializers.CharField(max_length=60)
     is_civilian = serializers.BooleanField()
@@ -20,6 +23,7 @@ class AirportSerializer(serializers.Serializer):
     fuel_currency = serializers.CharField(max_length=500)
 
 class Aircraft_TypeSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
     authorized_airports = AirportSerializer(many=True)
     aircraft_Type = serializers.CharField(max_length=25)
     max_fuel_capacity = serializers.IntegerField()
@@ -28,6 +32,7 @@ class Aircraft_TypeSerializer(serializers.Serializer):
     economy_class_seats=serializers.IntegerField()
 
 class AircraftSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
     airport = AirportSerializer()
     aircraft_type = Aircraft_TypeSerializer()
     name = serializers.CharField(max_length=30)

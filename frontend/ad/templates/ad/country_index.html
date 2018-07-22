@@ -12,6 +12,7 @@
         <table>
             <thead>
                 <tr>
+                    <td>ID</td>
                     <td>Name</td>
                 </tr>
             </thead>
@@ -19,6 +20,7 @@
 
                 {% for country in countries %}
                 <tr>
+                    <td>{{ country.id }}</td>
                     <td>{{ country.name }}</td>
                 </tr>
                 {% endfor %}

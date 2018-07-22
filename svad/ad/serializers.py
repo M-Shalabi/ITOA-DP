@@ -12,22 +12,12 @@ class CountrySerializer(serializers.ModelSerializer):
         # do i have to remove the , ? or not
 
 class CitySerializer(serializers.ModelSerializer):
+    country = CountrySerializer()
     class Meta:
         model = City
         fields = '__all__'
         read_only_fields=('id',)
 
-class AircraftSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Aircraft
-        fields = '__all__'
-        read_only_fields=('id',)
-
-class Aircraft_TypeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Aircraft_Type
-        fields = '__all__'
-        read_only_fields=('id',)
 
 class AirportSerializer(serializers.ModelSerializer):
     city = CitySerializer()
@@ -35,12 +25,27 @@ class AirportSerializer(serializers.ModelSerializer):
         model = Airport
         fields = '__all__'
         read_only_fields=('id',)
+
+class Aircraft_TypeSerializer(serializers.ModelSerializer):
+    authorized_airports = AirportSerializer(many=True)
+    class Meta:
+        model = Aircraft_Type
+        fields = '__all__'
+        read_only_fields=('id',)        
 # We named this Aircraft_TypeViewSerializers , we will return here everything including the relationship 
 # because it's nested jason data we need to return it
 class Aircraft_TypeViewSerializer(serializers.ModelSerializer):
     authorized_airports = AirportSerializer(many=True)
     class Meta:
         model = Aircraft_Type
+        fields = '__all__'
+        read_only_fields=('id',)
+
+class AircraftSerializer(serializers.ModelSerializer):
+    aircraft_type = Aircraft_TypeSerializer()
+    airport = AirportSerializer()
+    class Meta:
+        model = Aircraft
         fields = '__all__'
         read_only_fields=('id',)
 
