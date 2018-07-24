@@ -1,5 +1,9 @@
 from django.conf.urls import url
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 app_name = 'ad'
 urlpatterns = [
     url(r'countries$',views.CountryList.as_view(), name ='country_list'),
@@ -23,3 +27,4 @@ urlpatterns = [
     url(r'aircrafts/(?P<pk>[0-9]+)$',views.AircraftDetail.as_view(), name = 'aircrafts_details'),
     
 ]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
