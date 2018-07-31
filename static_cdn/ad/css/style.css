@@ -1,0 +1,23 @@
+body{
+background-color: white
+}
+
+#logo{
+    text-align:center; 
+    margin-left:auto; 
+    margin-right:auto; 
+    width:100px;
+    
+}
+
+div.container {
+    width:90%; 
+    margin:auto;
+  }
+
+  tr,td {text-align:left;}
+  
+  button.home_page{
+    height: 50px;
+    width: 50px;
+  }

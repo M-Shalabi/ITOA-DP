@@ -1,26 +1,61 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'ad/css/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>CITIES</title>
 </head>
 <body>
-        <table style="width:90%">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th> 
-                    <th>Country</th>
-                </tr>
+        
+    <div class="container" align="center">
+        <br><br>
+           
+        <picture id="logo">
+            <source media="(min-width: 991px)" srcset="{% static 'ad/image/logo_big.png' %}" >
+            <source media="(min-width: 600px)" srcset="{% static 'ad/image/logo_MID.png' %}">
+            <source media="(min-width: 200px)" srcset="{% static 'ad/image/logo_SMALL.png' %}">
+            <img src="{% static 'ad/image/logo_big.png' %}" style="width:auto;">
+          </picture>
+            
 
-                {% for city in cities %}
+            <br><br><br><br>
+            
+             
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Country</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for city in cities %}
                 <tr>
                     <td>{{ city.id }}</td>
                     <td>{{ city.name }}</td>
                     <td>{{ city.country.name }}</td>
                 </tr>
                 {% endfor %}
-                
-              </table>
+
+                </tbody>
+            </table>
+
+
+        <button type="button" class="btn btn-dark" style="float: left;"> Filter by 
+                <img    src="{% static 'ad/image/Filter.png' %}" >
+                </button>
+
+        <button type="button" class="btn btn-dark" style="float: right;"> Manage
+                <img    src="{% static 'ad/image/manage.png' %}" style="height: 30px;">
+                </button>
+                <br><br><br><br>
+    </div>  
+            
+          
 </body>
 </html>

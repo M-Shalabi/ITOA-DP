@@ -2,6 +2,11 @@ from django.shortcuts import render
 from django.views import View
 from .models import Country,Aircraft,Aircraft_Type,Airport,City
 
+class Home(View):
+    def get(self,request):
+        return render(request,'ad/home_page.html')
+
+
 class CountryList(View):
     pass
 

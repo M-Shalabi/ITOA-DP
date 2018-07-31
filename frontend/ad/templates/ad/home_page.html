@@ -1,0 +1,76 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'ad/css/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>HOMEPAGE</title>
+    
+</head>
+<body>
+    
+        <div class="container" align="center">
+            <br><br>
+               
+            <picture id="logo">
+                <source media="(min-width: 991px)" srcset="{% static 'ad/image/logo_big.png' %}" >
+                <source media="(min-width: 600px)" srcset="{% static 'ad/image/logo_MID.png' %}">
+                <source media="(min-width: 200px)" srcset="{% static 'ad/image/logo_SMALL.png' %}">
+                <img src="{% static 'ad/image/logo_big.png' %}" style="width:auto;">
+              </picture>
+                
+
+                <br><br><br><br>
+
+
+                <div class="container">
+                        <div class="row">
+                          <div class="col">
+                                <button type="button" class="btn btn-dark" style="float: left;">  
+                                        <img    class='pic' src="{% static 'ad/image/countries.png' %}" >
+                                        <p class="text">Countries</p>
+                                        
+                                        </button>
+                          </div>
+                          <div class="col">
+                                <button type="button" class="btn btn-dark" style="float: center;">  
+                                        <img    class='pic' src="{% static 'ad/image/cities.png' %}" >
+                                        <p class="text">Cities</p>
+                                        </button>
+                          </div>
+                          <div class="col">
+                                <button  type="button" class="btn btn-dark" style="float: right;"> 
+                                        <img    class='pic' src="{% static 'ad/image/airports.png' %}"  >
+                                        <p class="text">Airports</p>
+                                        </button>
+                          </div>
+                        </div>
+                        <br><br>
+                        <div class="row">
+                                <div class="col">
+                                        <button type="button" class="btn btn-dark" style="float: left;">  
+                                                <img    class='pic' src="{% static 'ad/image/aircrafts.png' %}"  align='center' >
+                                                <p class="text">Aircrafts</p>
+                                                </button>
+                                </div>
+                                <div class="col">
+                                        <button  type="button" class="btn btn-dark" style="float: right;"> 
+                                                <img    class='pic' src="{% static 'ad/image/aircraft_types.png' %}" align='center' >
+                                                <p class="text">Aircraft Types</p>
+                                                </button>     
+                                </div>
+            
+                        </div>
+                      </div>
+
+
+                    <br><br><br><br>
+        </div>
+
+
+          
+</body>
+</html>

@@ -1,37 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'ad/css/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>AIRCRAFT TYPES</title>
 </head>
 <body>
-        <table style="width:90%">
-                <tr>
-                    <th>ID</th>
-                    <th>Aircraft Type</th> 
-                    <th>Max Fuel Capacity</th>
-                    <th>First Class Seats</th>
-                    <th>Business Class Seats</th>
-                    <th>Economy Class Seats</th> 
-                    <th>Authorized Airports</th>
-                </tr>
-                {% for type in aircraft_types %}
-                <tr>
-                    <td>{{ type.id }}</td>
-                    <td>{{ type.aircraft_Type }}</td>
-                    <td>{{ type.max_fuel_capacity }}</td>
-                    <td>{{ type.first_class_seats }}</td>
-                    <td>{{ type.business_class_seats }}</td>
-                    <td>{{ type.economy_class_seats }}</td>
-                    <td>
-                    {% for a in type.authorized_airports %}
-                    {{ a.name }}
-                    {% endfor %}
-                </td>
-                </tr>
-                {% endfor %}
+
+        <div class="container" align="center">
+                <br><br>
+                   
+                <picture id="logo">
+                    <source media="(min-width: 991px)" srcset="{% static 'ad/image/logo_big.png' %}" >
+                    <source media="(min-width: 600px)" srcset="{% static 'ad/image/logo_MID.png' %}">
+                    <source media="(min-width: 200px)" srcset="{% static 'ad/image/logo_SMALL.png' %}">
+                    <img src="{% static 'ad/image/logo_big.png' %}" style="width:auto;">
+                  </picture>
+
+                    <br><br><br><br>
+                               
+                        <table class="table">
+                                <thead class="thead-dark">
+                                        <tr>
+                                                <th>ID</th>
+                                                <th>Aircraft Type</th> 
+                                                <th>Max Fuel Capacity</th>
+                                                <th>First Class Seats</th>
+                                                <th>Business Class Seats</th>
+                                                <th>Economy Class Seats</th> 
+                                                <th>Authorized Airports</th>
+                                            </tr>
+                                            {% for type in aircraft_types %}
+                                            <tr>
+                                                <td>{{ type.id }}</td>
+                                                <td>{{ type.aircraft_Type }}</td>
+                                                <td>{{ type.max_fuel_capacity }}</td>
+                                                <td>{{ type.first_class_seats }}</td>
+                                                <td>{{ type.business_class_seats }}</td>
+                                                <td>{{ type.economy_class_seats }}</td>
+                                                <td>
+                                                {% for a in type.authorized_airports %}
+                                                {{ a.name }}
+                                                {% endfor %}
+                                            </td>
+                                            </tr>
+                                            {% endfor %}
+                                            
+                                          </table>
+        
+        
+                <button type="button" class="btn btn-dark" style="float: left;"> Filter by 
+                        <img    src="{% static 'ad/image/Filter.png' %}" >
+                        </button>
+        
+                <button type="button" class="btn btn-dark" style="float: right;"> Manage
+                        <img    src="{% static 'ad/image/manage.png' %}" style="height: 30px;">
+                        </button>
+
+                        <br><br><br><br>
+            </div>  
                 
-              </table>
 </body>
 </html>

@@ -1,24 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'ad/css/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>AIRPORTS</title>
 </head>
 <body>
-        <table style="width:90%">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th> 
-                    <th>Civilian</th>
-                    <th>Military</th>
-                    <th>International</th> 
-                    <th>Fuel Cost</th>
-                    <th>Fuel Currency</th>
-                    <th>City</th> 
-                    <th>Country</th> 
-                    <th>Remarks</th>
-                </tr>
+
+        <div class="container" align="center">
+                <br><br>
+                   
+                <picture id="logo">
+                    <source media="(min-width: 991px)" srcset="{% static 'ad/image/logo_big.png' %}" >
+                    <source media="(min-width: 600px)" srcset="{% static 'ad/image/logo_MID.png' %}">
+                    <source media="(min-width: 200px)" srcset="{% static 'ad/image/logo_SMALL.png' %}">
+                    <img src="{% static 'ad/image/logo_big.png' %}" style="width:auto;">
+                  </picture>
+
+                    <br><br><br><br>
+                               
+                        <table class="table">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Name</th> 
+                                    <th scope="col">Civilian</th>
+                                    <th scope="col">Military</th>
+                                    <th scope="col">International</th> 
+                                    <th scope="col">Fuel Cost</th>
+                                    <th scope="col">Fuel Currency</th>
+                                    <th scope="col">City</th> 
+                                    <th scope="col">Country</th> 
+                                    <th scope="col">Remarks</th>
+                                </tr>
 
                 {% for airport in airports %}
                 <tr>
@@ -37,5 +55,18 @@
                 {% endfor %}
                 
               </table>
+        
+        
+                <button type="button" class="btn btn-dark" style="float: left;"> Filter by 
+                        <img    src="{% static 'ad/image/Filter.png' %}" >
+                        </button>
+        
+                <button type="button" class="btn btn-dark" style="float: right;"> Manage
+                        <img    src="{% static 'ad/image/manage.png' %}" style="height: 30px;">
+                        </button>
+
+                        <br><br><br><br>
+            </div>  
+            
 </body>
 </html>
