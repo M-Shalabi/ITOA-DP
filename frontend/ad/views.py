@@ -6,6 +6,9 @@ class Home(View):
     def get(self,request):
         return render(request,'ad/home_page.html')
 
+class CountryManage(View):
+    def get(self,request):
+        return render(request,'ad/manage_country.html')
 
 class CountryList(View):
     pass
@@ -22,6 +25,11 @@ class CountryList(View):
 
 class CountryDetail(View):
     pass
+
+
+class CityManage(View):
+    def get(self,request):
+        return render(request,'ad/manage_city.html')
 
 class CityList(View):
     def get(self,request):
