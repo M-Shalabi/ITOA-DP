@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from .models import Country,Aircraft,Aircraft_Type,Airport,City
+from .forms import CountryForm
 
 class Home(View):
     def get(self,request):
@@ -15,13 +16,19 @@ class CountryList(View):
 
     def get(self,request):
         status_code, is_serialized, countries = Country.get_list()
+        country_form = CountryForm()
         context = {
-            'countries':countries
+            'countries':countries,
+            'country_form':country_form,
         }
         return render(request,'ad/country_index.html',context)
 
-    def post():
-        pass
+    def post(self,request):
+        serializer = CountrySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status = status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CountryDetail(View):
     pass
